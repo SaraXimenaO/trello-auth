@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
+import {Router} from '@angular/router';
 import {
   faBell,
   faInfoCircle,
   faClose,
   faAngleDown
 } from '@fortawesome/free-solid-svg-icons';
+
+import {AuthService} from '@services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -19,5 +22,13 @@ export class NavbarComponent {
   isOpenOverlayAvatar = false;
   isOpenOverlayBoards = false;
 
-  constructor() {}
+  constructor(
+    private authservice: AuthService,
+    private router: Router
+  ) {}
+
+  logout(){
+    this.authservice.logout();
+    this.router.navigate(['/login']);
+  }
 }

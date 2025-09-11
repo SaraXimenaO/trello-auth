@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http'
-import {environment} from '@environments/environment'
+import { HttpClient} from '@angular/common/http';
+import {environment} from '@environments/environment';
 import { switchMap, tap } from 'rxjs';
 import { TokenService} from '@services/token.service';
-import { ResponseLogin} from '@models/auth.model'
+import { ResponseLogin} from '@models/auth.model';
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +52,10 @@ export class AuthService {
 
   changePassword(token: string, newPassword: string){
     return this.http.post(`${this.apiUrl}/api/v1/auth/change-password`, {token, newPassword});
+  }
+
+  logout(){
+    this.tokenService.removeToken();
   }
 
 
